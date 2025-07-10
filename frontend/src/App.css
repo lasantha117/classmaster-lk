@@ -1,0 +1,367 @@
+/* --- MODERN THEME FOR CLASSMASTER LK (DATABERRY INSPIRED) --- */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* --- THEME VARIABLES --- */
+:root {
+  /* Light Theme (Default) */
+  --c-primary: #4338CA;
+  --c-primary-hover: #3730A3;
+  --c-bg: #F9FAFB;
+  --c-surface: #FFFFFF;
+  --c-text: #1F2937;
+  --c-text-secondary: #6B7280;
+  --c-border: #E5E7EB;
+  --c-success: #10B981;
+  --c-error: #EF4444;
+  --c-focus-ring: rgba(67, 56, 202, 0.4);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-theme {
+  /* Dark Theme */
+  --c-primary: #818CF8;
+  --c-primary-hover: #6366F1;
+  --c-bg: #111827;
+  --c-surface: #1F2937;
+  --c-text: #E5E7EB;
+  --c-text-secondary: #9CA3AF;
+  --c-border: #374151;
+  --c-success: #34D399;
+  --c-error: #F87171;
+  --c-focus-ring: rgba(129, 140, 248, 0.4);
+}
+
+/* --- Base Styles --- */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--c-bg);
+  color: var(--c-text);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+  width: 260px;
+  background: #2A215A;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.sidebar__brand h1 {
+  color: #FFFFFF;
+  font-size: 22px;
+  margin-bottom: 48px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.sidebar__nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.sidebar__nav-item {
+    margin-bottom: 8px;
+}
+
+.sidebar__nav-link {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: 10px;
+  color: #A7A1D8;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar__nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #FFFFFF;
+}
+
+.sidebar__nav-link--active {
+  background-color: #4338CA;
+  color: #FFFFFF;
+}
+
+.sidebar__nav-icon {
+  margin-right: 16px;
+  width: 20px;
+  height: 20px;
+}
+
+.theme-switcher {
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+.theme-switcher .btn {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #A7A1D8;
+  border: 1px solid #4A3F8E;
+  width: 100%;
+}
+.theme-switcher .btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+}
+
+/* --- Main Content --- */
+.main-content {
+  flex: 1;
+  padding: 32px 48px;
+  background-color: var(--c-bg);
+}
+
+.page-header {
+  margin-bottom: 32px;
+}
+
+.page-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--c-text);
+}
+
+.page-header p {
+  color: var(--c-text-secondary);
+  font-size: 16px;
+}
+
+/* --- NEW Styles for Professional Filter Toolbar --- */
+.filter-toolbar {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input-wrapper svg {
+  position: absolute;
+  left: 14px;
+  color: var(--c-text-secondary);
+  pointer-events: none; /* Make icon non-interactive */
+}
+
+.search-input-wrapper .form-control {
+  padding-left: 44px; /* Make space for the icon */
+}
+
+.filter-toolbar .form-control,
+.filter-toolbar .btn {
+  height: 44px;
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Adjust select padding to match height */
+.filter-toolbar select.form-control {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/* --- Cards & Grids (Themed) --- */
+.dashboard-grid {
+  display: grid;
+  gap: 24px;
+}
+
+.dashboard-card, .data-table {
+  background-color: var(--c-surface);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--c-border);
+}
+
+.dashboard-card {
+  padding: 24px;
+}
+
+.stat-card__value {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--c-primary);
+}
+
+.stat-card__label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--c-text-secondary);
+  margin-top: 8px;
+}
+
+.pending-payments {
+  color: var(--c-error);
+}
+
+/* --- Tables (Themed) --- */
+.data-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+}
+
+.data-table th, .data-table td {
+  padding: 16px 24px;
+  text-align: left;
+  border-bottom: 1px solid var(--c-border);
+}
+
+.data-table tr:last-child td {
+    border-bottom: none;
+}
+
+.data-table th {
+  background-color: var(--c-bg);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--c-text-secondary);
+}
+
+/* --- Buttons (Themed) --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--c-focus-ring);
+}
+
+.btn--primary {
+  background-color: var(--c-primary);
+  color: #FFFFFF;
+}
+.btn--primary:hover {
+  background-color: var(--c-primary-hover);
+}
+
+.btn--secondary {
+  background-color: var(--c-surface);
+  color: var(--c-text);
+  border-color: var(--c-border);
+  box-shadow: var(--shadow-sm);
+}
+.btn--secondary:hover {
+  background-color: var(--c-bg);
+}
+
+/* ... other button styles ... */
+
+/* --- Modals (Themed) --- */
+.modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+}
+
+.modal__content {
+  background-color: var(--c-surface);
+  padding: 24px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  border: 1px solid var(--c-border);
+}
+
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modal__header h2 {
+    font-size: 20px;
+    color: var(--color-text);
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+/* --- Utility & Other --- */
+.filter-bar {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-badge--paid {
+  background-color: rgba(0, 255, 163, 0.1);
+  color: var(--color-success);
+}
+
+.status-badge--pending {
+  background-color: rgba(255, 77, 109, 0.1);
+  color: var(--color-error);
+}
+
+.success-message {
+  background-color: rgba(0, 255, 163, 0.1);
+  color: var(--color-success);
+  padding: 12px 16px;
+  border-radius: var(--radius-base);
+  border: 1px solid var(--color-success);
+  margin-bottom: 16px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 32px;
+    color: var(--color-text-secondary);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 16px;
+}

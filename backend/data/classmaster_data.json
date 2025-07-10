@@ -1,0 +1,165 @@
+{
+    "classes": [
+        {
+            "name": "Squid Game Symbols",
+            "subject": "pu",
+            "grade": "Grade 8",
+            "day": "Wednesday",
+            "time": "4 - 6",
+            "fee_per_month": 1212,
+            "created_date": "2025-07-05",
+            "id": 1751736802063
+        },
+        {
+            "name": "ICT Class",
+            "subject": "ICT ",
+            "grade": "Grade 10",
+            "day": "Monday",
+            "time": "4 - 6",
+            "fee_per_month": 600,
+            "created_date": "2025-07-05",
+            "id": 1751737264613
+        },
+        {
+            "name": "Squid Game ICT",
+            "subject": "pu",
+            "grade": "",
+            "day": "",
+            "time": "",
+            "fee_per_month": 12323,
+            "id": 1751741276537
+        },
+        {
+            "name": "Sinhala",
+            "subject": "Sinhala  ICT",
+            "grade": "",
+            "day": "",
+            "time": "",
+            "fee_per_month": 232,
+            "id": 1751742242796
+        },
+        {
+            "name": "tAMIL",
+            "subject": "Tamil",
+            "grade": "",
+            "day": "",
+            "time": "",
+            "fee_per_month": 455,
+            "id": 1751742376904
+        }
+    ],
+    "students": [
+        {
+            "name": "Krugerrand Golden Coin",
+            "contact_number": "233123123",
+            "address": " , Kohilegedara",
+            "parent_name": "Sunil",
+            "enrolled_classes": [
+                1751736802063
+            ],
+            "joined_date": "2025-07-05",
+            "id": 1751736857240
+        },
+        {
+            "address": "hgj",
+            "contact_number": "11111",
+            "enrolled_classes": [
+                1751737264613
+            ],
+            "id": 1751737316273,
+            "joined_date": "2025-07-05",
+            "name": "kamal",
+            "parent_name": "Sunil"
+        },
+        {
+            "name": "Nwan",
+            "contact_number": "1314",
+            "address": "",
+            "parent_name": "",
+            "enrolled_classes": [
+                1751736802063
+            ],
+            "id": 1751742159895
+        },
+        {
+            "name": "FAW",
+            "contact_number": "23",
+            "address": "",
+            "parent_name": "",
+            "enrolled_classes": [
+                1751736802063
+            ],
+            "id": 1751742168861
+        },
+        {
+            "name": "dASU",
+            "contact_number": "2323",
+            "address": "",
+            "parent_name": "",
+            "enrolled_classes": [],
+            "id": 1751742209180
+        }
+    ],
+    "payments": [
+        {
+            "student_id": 1751736857240,
+            "student_name": "Krugerrand Golden Coin",
+            "class_id": 1751736802063,
+            "class_name": "Squid Game Symbols",
+            "month": "2025-07",
+            "amount": 1212,
+            "status": "Pending",
+            "payment_date": null
+        },
+        {
+            "student_id": 1751737316273,
+            "student_name": "kamal",
+            "class_id": 1751737264613,
+            "class_name": "ICT Class",
+            "month": "2025-07",
+            "amount": 600,
+            "status": "Pending",
+            "payment_date": null
+        },
+        {
+            "student_id": 1751742159895,
+            "student_name": null,
+            "class_id": 1751736802063,
+            "class_name": null,
+            "month": "2025-07",
+            "amount": 1212,
+            "status": "Paid",
+            "payment_date": "2025-07-06"
+        },
+        {
+            "student_id": 1751742168861,
+            "student_name": null,
+            "class_id": 1751736802063,
+            "class_name": null,
+            "month": "2025-07",
+            "amount": 1212,
+            "status": "Paid",
+            "payment_date": "2025-07-06"
+        },
+        {
+            "student_id": 1751736857240,
+            "student_name": null,
+            "class_id": 1751736802063,
+            "class_name": null,
+            "month": "2025-05",
+            "amount": 1212,
+            "status": "Paid",
+            "payment_date": "2025-07-06"
+        }
+    ],
+    "attendance": [
+        {
+            "student_id": 1751736857240,
+            "student_name": "Krugerrand Golden Coin",
+            "class_id": 1751736802063,
+            "class_name": "Squid Game Symbols",
+            "date": "2025-07-05",
+            "status": "Present"
+        }
+    ]
+}
