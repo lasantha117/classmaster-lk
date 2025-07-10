@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
-// import { LayoutDashboard, BookOpen, Users, CreditCard, FileText, Moon, Sun } from 'lucide-react'; // This line is removed
+import React, { useState, useEffect } from 'react';
+import { sampleData } from './data'; // Import local data
 import Dashboard from './components/Dashboard';
 import ClassManagement from './components/ClassManagement';
 import StudentManagement from './components/StudentManagement';
@@ -7,7 +7,6 @@ import AttendanceAndFees from './components/AttendanceAndFees';
 import Reports from './components/Reports';
 
 // --- INLINE SVG ICONS ---
-// We define the icons here as React components to avoid external dependencies.
 const Icon = ({ children }) => <span className="sidebar__nav-icon">{children}</span>;
 const LayoutDashboardIcon = () => <Icon><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"></rect><rect width="7" height="5" x="14" y="3" rx="1"></rect><rect width="7" height="9" x="14" y="12" rx="1"></rect><rect width="7" height="5" x="3" y="16" rx="1"></rect></svg></Icon>;
 const BookOpenIcon = () => <Icon><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg></Icon>;
@@ -18,17 +17,15 @@ const MoonIcon = () => <Icon><svg xmlns="http://www.w3.org/2000/svg" width="20" 
 const SunIcon = () => <Icon><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg></Icon>;
 
 
-// The main App component that holds the state and logic for the entire application.
 const App = () => {
   const [currentPage, setCurrentPage] = useState('dashboard');
-  const [data, setData] = useState({ classes: [], students: [], payments: [], attendance: [] });
-  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState(sampleData); // Use local data
+  const [isLoading, setIsLoading] = useState(false); // No need for loading state
   const [notification, setNotification] = useState('');
-  const [theme, setTheme] = useState('light'); // 'light' or 'dark'
+  const [theme, setTheme] = useState('light');
 
-  // Effect to apply the theme class to the body
   useEffect(() => {
-    document.body.className = ''; // Clear previous theme
+    document.body.className = '';
     document.body.classList.add(`${theme}-theme`);
   }, [theme]);
 
@@ -41,94 +38,42 @@ const App = () => {
     setTimeout(() => setNotification(''), 3000);
   };
 
-  const fetchData = useCallback(async () => {
-    try {
-      const response = await fetch('http://localhost:5000/api/data');
-      if (!response.ok) throw new Error('Network response was not ok');
-      const result = await response.json();
-      setData(result);
-    } catch (error) {
-      console.error("Failed to fetch data:", error);
-      showNotification('Error: Could not fetch data from the server.');
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
-
-  // --- Centralized API Handler with Optimistic Updates ---
-
-  const handleApiCall = async (endpoint, method, body, successMessage, optimisticUpdate, onSuccess) => {
-    const originalData = JSON.parse(JSON.stringify(data)); // Deep copy for reliable rollback
-    if (optimisticUpdate) {
-      optimisticUpdate(); // Apply UI change immediately for UPDATE/DELETE
-    }
-
-    try {
-      const response = await fetch(`http://localhost:5000/api/${endpoint}`, {
-        method,
-        headers: { 'Content-Type': 'application/json' },
-        body: method !== 'DELETE' ? JSON.stringify(body) : null,
-      });
-      const result = await response.json();
-      if (!response.ok) throw new Error(result.error || 'An unknown error occurred');
-      
-      showNotification(successMessage || result.message);
-      
-      if (onSuccess) {
-        onSuccess(result); // Use server response for ADD operations
-      }
-      
-    } catch (error) {
-      showNotification(`Error: ${error.message}. Reverting changes.`);
-      if (optimisticUpdate) {
-        setData(originalData); // Revert UI on failure
-      }
-    }
-  };
-
-  // --- Handler Functions for Child Components ---
+  // --- Handlers now modify local state directly ---
 
   const handleAddStudent = (student) => {
-    const onSuccess = (newStudentFromServer) => {
-      setData(prev => ({ ...prev, students: [...prev.students, newStudentFromServer] }));
-    };
-    handleApiCall('students', 'POST', student, 'Student added successfully!', null, onSuccess);
+    const newStudent = { ...student, id: Date.now() };
+    setData(prev => ({ ...prev, students: [...prev.students, newStudent] }));
+    showNotification('Student added successfully!');
   };
   
   const handleAddClass = (newClass) => {
-    const onSuccess = (newClassFromServer) => {
-      setData(prev => ({ ...prev, classes: [...prev.classes, newClassFromServer] }));
-    };
-    handleApiCall('classes', 'POST', newClass, 'Class added successfully!', null, onSuccess);
+    const newClassWithId = { ...newClass, id: Date.now() };
+    setData(prev => ({ ...prev, classes: [...prev.classes, newClassWithId] }));
+    showNotification('Class added successfully!');
   };
 
-  const handleUpdateStudent = (student) => handleApiCall(`students/${student.id}`, 'PUT', student, 'Student updated successfully!', () => {
+  const handleUpdateStudent = (student) => {
     setData(prev => ({ ...prev, students: prev.students.map(s => s.id === student.id ? student : s) }));
-  });
+    showNotification('Student updated successfully!');
+  };
 
-  const handleDropStudent = (studentId) => handleApiCall(`students/${studentId}`, 'DELETE', null, 'Student dropped successfully!', () => {
+  const handleDropStudent = (studentId) => {
     setData(prev => ({ ...prev, students: prev.students.filter(s => s.id !== studentId) }));
-  });
+    showNotification('Student dropped successfully!');
+  };
 
-  const handleUpdateClass = (cls) => handleApiCall(`classes/${cls.id}`, 'PUT', cls, 'Class updated successfully!', () => {
+  const handleUpdateClass = (cls) => {
     setData(prev => ({ ...prev, classes: prev.classes.map(c => c.id === cls.id ? cls : c) }));
-  });
+    showNotification('Class updated successfully!');
+  };
 
-  const handleDeleteClass = (classId) => handleApiCall(`classes/${classId}`, 'DELETE', null, 'Class deleted successfully!', () => {
+  const handleDeleteClass = (classId) => {
     setData(prev => ({ ...prev, classes: prev.classes.filter(c => c.id !== classId) }));
-  });
+    showNotification('Class deleted successfully!');
+  };
 
   const handlePaymentUpdate = (payment, newStatus) => {
-    const endpoint = 'payments/update';
-    const body = { ...payment, status: newStatus };
-    const successMessage = 'Payment status updated!';
-
-    const optimisticUpdate = () => {
-      setData(prev => {
+    setData(prev => {
         const paymentExists = prev.payments.some(p => 
           p.student_id === payment.student_id && 
           p.class_id === payment.class_id && 
@@ -153,25 +98,22 @@ const App = () => {
           return { ...prev, payments: [...prev.payments, newPaymentRecord] };
         }
       });
-    };
-
-    handleApiCall(endpoint, 'POST', body, successMessage, optimisticUpdate);
+      showNotification('Payment status updated!');
   };
 
-
   const renderCurrentPage = () => {
-    const pageProps = { data, showNotification, onDataUpdate: fetchData };
+    const pageProps = { data, showNotification };
     switch (currentPage) {
-      case 'dashboard': return <Dashboard {...pageProps} onNavigate={setCurrentPage} />;
+      case 'dashboard': return <Dashboard {...pageProps} />;
       case 'classes': return <ClassManagement {...pageProps} onAddClass={handleAddClass} onUpdateClass={handleUpdateClass} onDeleteClass={handleDeleteClass} />;
       case 'students': return <StudentManagement {...pageProps} onAddStudent={handleAddStudent} onUpdateStudent={handleUpdateStudent} onDropStudent={handleDropStudent} />;
       case 'fee-tracking': return <AttendanceAndFees {...pageProps} onPaymentUpdate={handlePaymentUpdate} />;
       case 'reports': return <Reports {...pageProps} />;
-      default: return <Dashboard {...pageProps} onNavigate={setCurrentPage} />;
+      default: return <Dashboard {...pageProps} />;
     }
   };
 
-  if (isLoading) return <div className="app" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>Loading...</div>;
+  if (isLoading) return <div>Loading...</div>;
 
   const sidebarPages = [
       { id: 'dashboard', label: 'Dashboard', icon: <LayoutDashboardIcon /> },
@@ -184,18 +126,12 @@ const App = () => {
   return (
     <div className="app">
       <aside className="sidebar">
-        <div className="sidebar__brand">
-          <h1>ClassMaster</h1>
-        </div>
+        <div className="sidebar__brand"><h1>ClassMaster</h1></div>
         <nav className="sidebar__nav">
           <ul>
             {sidebarPages.map(page => (
               <li key={page.id} className="sidebar__nav-item">
-                <a
-                  href="#"
-                  className={`sidebar__nav-link ${currentPage === page.id ? 'sidebar__nav-link--active' : ''}`}
-                  onClick={(e) => { e.preventDefault(); setCurrentPage(page.id); }}
-                >
+                <a href="#" className={`sidebar__nav-link ${currentPage === page.id ? 'sidebar__nav-link--active' : ''}`} onClick={(e) => { e.preventDefault(); setCurrentPage(page.id); }}>
                   {page.icon}
                   {page.label}
                 </a>
