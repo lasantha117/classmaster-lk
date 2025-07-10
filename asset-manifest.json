@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/lasantha117/classmaster-lk/static/css/main.dc359d0a.css",
-    "main.js": "/lasantha117/classmaster-lk/static/js/main.c3f10a4e.js",
-    "index.html": "/lasantha117/classmaster-lk/index.html",
-    "main.dc359d0a.css.map": "/lasantha117/classmaster-lk/static/css/main.dc359d0a.css.map",
-    "main.c3f10a4e.js.map": "/lasantha117/classmaster-lk/static/js/main.c3f10a4e.js.map"
+    "main.css": "/classmaster-lk/static/css/main.dc359d0a.css",
+    "main.js": "/classmaster-lk/static/js/main.c3f10a4e.js",
+    "index.html": "/classmaster-lk/index.html",
+    "main.dc359d0a.css.map": "/classmaster-lk/static/css/main.dc359d0a.css.map",
+    "main.c3f10a4e.js.map": "/classmaster-lk/static/js/main.c3f10a4e.js.map"
   },
   "entrypoints": [
     "static/css/main.dc359d0a.css",
