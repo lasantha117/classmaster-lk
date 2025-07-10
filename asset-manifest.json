@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/lasantha117/classmaster-lk/static/css/main.dc359d0a.css",
+    "main.js": "/lasantha117/classmaster-lk/static/js/main.8562a267.js",
+    "index.html": "/lasantha117/classmaster-lk/index.html",
+    "main.dc359d0a.css.map": "/lasantha117/classmaster-lk/static/css/main.dc359d0a.css.map",
+    "main.8562a267.js.map": "/lasantha117/classmaster-lk/static/js/main.8562a267.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dc359d0a.css",
+    "static/js/main.8562a267.js"
+  ]
+}
