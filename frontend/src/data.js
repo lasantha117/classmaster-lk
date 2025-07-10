@@ -7,9 +7,9 @@ export const sampleData = {
     { "id": 3, "name": "Grade 10 Science", "subject": "Science", "grade": "Grade 10", "day": "Wednesday", "time": "4:00 PM - 6:00 PM", "fee_per_month": 5000 },
   ],
   students: [
-    { "id": 1, "name": "Kasun Perera", "contact_number": "0771234567", "enrolled_classes": [1, 2] },
-    { "id": 2, "name": "Sanduni Fernando", "contact_number": "0779876543", "enrolled_classes": [1] },
-    { "id": 3, "name": "Nimali Jayawardena", "contact_number": "0764445566", "enrolled_classes": [2, 3] }
+    { "id": 1, "name": "Kasun Perera", "contact_number": "0111232317", "enrolled_classes": [1, 2] },
+    { "id": 2, "name": "Sanduni Fernando", "contact_number": "0213213213", "enrolled_classes": [1] },
+    { "id": 3, "name": "Nimali Jayawardena", "contact_number": "0232323232", "enrolled_classes": [2, 3] }
   ],
   payments: [
     { "student_id": 1, "student_name": "Kasun Perera", "class_id": 1, "class_name": "2026 A/L Physics", "month": "2025-07", "amount": 8000, "status": "Paid", "payment_date": "2025-07-03" },
