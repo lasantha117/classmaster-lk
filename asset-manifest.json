@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/classmaster-lk/static/css/main.dc359d0a.css",
-    "main.js": "/classmaster-lk/static/js/main.c3f10a4e.js",
+    "main.js": "/classmaster-lk/static/js/main.334e2783.js",
     "index.html": "/classmaster-lk/index.html",
     "main.dc359d0a.css.map": "/classmaster-lk/static/css/main.dc359d0a.css.map",
-    "main.c3f10a4e.js.map": "/classmaster-lk/static/js/main.c3f10a4e.js.map"
+    "main.334e2783.js.map": "/classmaster-lk/static/js/main.334e2783.js.map"
   },
   "entrypoints": [
     "static/css/main.dc359d0a.css",
-    "static/js/main.c3f10a4e.js"
+    "static/js/main.334e2783.js"
   ]
 }
